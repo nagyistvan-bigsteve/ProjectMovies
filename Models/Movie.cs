@@ -5,8 +5,8 @@ namespace ProjectMovies.Models
     public class Movie
     {
         public Guid ID { get; set; }
-        public string name { get; set; }
-        public string genre { get; set; }
-        public int star { get; set; }
+        public string Name { get; set; }
+        public string Genre { get; set; }
+        public int Star { get; set; }
     }
 }

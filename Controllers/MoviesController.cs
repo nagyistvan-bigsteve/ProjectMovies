@@ -76,12 +76,14 @@ namespace ProjectMovies.Controllers
         // POST: api/Movies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Movie>> PostMovie(Movie movie)
+        public async Task PostMovie([FromBody] Movie movie)
         {
+            if(movie.ID == Guid.Empty)
+            {
+                movie.ID = Guid.NewGuid();
+            }
             _context.Movie.Add(movie);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetMovie", new { id = movie.ID }, movie);
         }
 
         // DELETE: api/Movies/5

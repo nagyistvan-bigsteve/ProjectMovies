@@ -2,6 +2,8 @@
 
 <p>This component demonstrates fetching movies from the server.</p>
 
+<button class="nav-link text-dark" [routerLink]="['/movies-add']">Add movies</button>
+
 <p *ngIf="!movies"><em>Loading...</em></p>
 
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="movies">
@@ -19,6 +21,9 @@
       <td>{{ movie.name }}</td>
       <td>{{ movie.genre }}</td>
       <td>{{ movie.star }}</td>
+      <td><button class="btn btn-primary" (click)="deleteMovie(movie)">delete</button></td>
+      <td><a href="/movies-details?id={{movie.id}}" class="btn btn-primary">details</a></td>
+      <td><a href="/movies-update?id={{movie.id}}" class="btn btn-primary">update</a></td>
     </tr>
   </tbody>
 </table>

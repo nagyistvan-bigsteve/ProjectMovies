@@ -1,0 +1,11 @@
+<h1 id="tableLabel">Update movies</h1>
+
+Name:
+<input [(ngModel)]="movie.name" /><br/>
+Genre:
+<input [(ngModel)]="movie.genre" /><br/>
+Star:
+<input [(ngModel)]="movie.star" /><br/>
+
+<button class="btn btn-primary" (click)="saveMovie()">Save updates</button> <br />
+<button class="btn btn-primary" (click)="backToList()">Back</button>

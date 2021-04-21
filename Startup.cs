@@ -30,11 +30,6 @@ namespace ProjectMovies
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProjectMovies", Version = "v1" });
-            });
-
             services.AddDbContext<ProjectMoviesContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ProjectMoviesContext")));
         }
@@ -45,8 +40,6 @@ namespace ProjectMovies
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjectMovies v1"));
-
             }
             else
             {
