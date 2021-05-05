@@ -10,20 +10,20 @@ import { Router } from '@angular/router';
 })
 export class MoviesUpdateComponent implements OnInit {
 
+  public movie: Movie;
+  public param;
+
   ngOnInit() {
-    this.routers.queryParams.subscribe(id => {
-      this.id = id;
+    this.routers.queryParams.subscribe(param => {
+      this.param = param;
       this.loadMovies();
     });
   }
-
-  public movie: Movie;
-  public id;
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private routers: ActivatedRoute, private router: Router)
   {}
 
   loadMovies() {
-    this.http.get<Movie>(this.baseUrl + 'api/movies/' +this.id.id).subscribe(result => {
+    this.http.get<Movie>(this.baseUrl + 'api/movies/' +this.param.id).subscribe(result => {
       this.movie = result;
     }, error => console.error(error));
   }

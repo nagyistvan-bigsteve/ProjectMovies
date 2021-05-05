@@ -13,6 +13,11 @@ import { MoviesComponent } from './movies/movies.component';
 import { MoviesAddComponent } from './movies/movies-add.component';
 import { MoviesDetailsComponent } from './movies/movies-details.component';
 import { MoviesUpdateComponent } from './movies/movies-update.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,11 @@ import { MoviesUpdateComponent } from './movies/movies-update.component';
       { path: 'movies-details', component: MoviesDetailsComponent },
       { path: 'movies-update', component: MoviesUpdateComponent }
 
-    ])
+    ]),
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatSliderModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

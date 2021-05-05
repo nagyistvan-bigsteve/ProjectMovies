@@ -1,11 +1,13 @@
+<div *ngIf="movie">
+
 <h1 id="tableLabel">Update movies</h1>
 
-Name:
+Name: <br />
 <input [(ngModel)]="movie.name" /><br/>
-Genre:
+Genre: <br />
 <input [(ngModel)]="movie.genre" /><br/>
-Star:
-<input [(ngModel)]="movie.star" /><br/>
+Star: <br />
+<input [(ngModel)]="movie.star" /><br/> <br />
 
-<button class="btn btn-primary" (click)="saveMovie()">Save updates</button> <br />
-<button class="btn btn-primary" (click)="backToList()">Back</button>
+<button class="btn btn-primary" (click)="saveMovie()">Save updates</button> <br /> <br />
+<button class="btn btn-primary" (click)="backToList()">Back</button></div>

@@ -1,8 +1,11 @@
-<h1 id="tableLabel">Details</h1>
+<div *ngIf="movie">
 
-<p aria-live="polite">Name: <strong>{{ movie.name }}</strong></p>
+  <h1 id="tableLabel">Details</h1>
 
-<p aria-live="polite">Genre: <strong>{{ movie.genre }}</strong></p>
+  <p aria-live="polite">Name: <strong>{{ movie.name }}</strong></p>
 
-<p aria-live="polite">Star: <strong *ngFor="let in of counter(movie.star)"> ☆ </strong> </p>
-<button class="btn btn-primary" (click)="backToList()">Back</button>
+  <p aria-live="polite">Genre: <strong>{{ movie.genre }}</strong></p>
+
+  <p aria-live="polite">Star: <strong *ngFor="let x of counter(movie.star)"> ☆ </strong> </p>
+  <button class="btn btn-primary" (click)="backToList()">Back</button>
+</div>
