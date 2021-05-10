@@ -1,11 +1,14 @@
 <div *ngIf="movie">
+  <mat-card>
+    <mat-card-content>
+      <h1 id="tableLabel">Details</h1>
 
-  <h1 id="tableLabel">Details</h1>
+      <p aria-live="polite">Name: <strong>{{ movie.name }}</strong></p>
 
-  <p aria-live="polite">Name: <strong>{{ movie.name }}</strong></p>
+      <p aria-live="polite">Genre: <strong>{{ movie.genre }}</strong></p>
 
-  <p aria-live="polite">Genre: <strong>{{ movie.genre }}</strong></p>
-
-  <p aria-live="polite">Star: <strong *ngFor="let x of counter(movie.star)"> ☆ </strong> </p>
-  <button class="btn btn-primary" (click)="backToList()">Back</button>
+      <p aria-live="polite">Star: <strong *ngFor="let x of counter(movie.star)"> ☆ </strong> <strong>({{movie.star}})</strong> </p>
+      <button mat-raised-button color="primary" (click)="backToList()">Back</button>
+    </mat-card-content>
+  </mat-card> 
 </div>

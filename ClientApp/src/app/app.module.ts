@@ -18,6 +18,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -41,14 +47,19 @@ import { MatTableModule } from '@angular/material/table';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'movies', component: MoviesComponent },
       { path: 'movies-add', component: MoviesAddComponent },
-      { path: 'movies-details', component: MoviesDetailsComponent },
-      { path: 'movies-update', component: MoviesUpdateComponent }
+      { path: 'movies-details/:id', component: MoviesDetailsComponent },
+      { path: 'movies-update/:id', component: MoviesUpdateComponent }
 
     ]),
     BrowserAnimationsModule,
     MatSlideToggleModule,
     MatSliderModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -25,4 +25,7 @@ export class MoviesAddComponent {
   public backToList() {
     this.router.navigateByUrl("/movies");
   }
+  formatLabel(value: number) {
+    return value + '☆';
+  }
 }

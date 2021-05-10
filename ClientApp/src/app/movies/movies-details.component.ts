@@ -10,21 +10,23 @@ import { Router } from '@angular/router';
 })
 export class MoviesDetailsComponent implements OnInit {
 
-  public movie: Movie;
-  public params;
+  public id: string;
+  public movie: Movie = <Movie>{};
+
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: ActivatedRoute, private routers: Router)
+  { }
 
   ngOnInit() {
-    this.router.queryParams.subscribe(params => {
-      this.params = params;
+    this.router.params.subscribe(param => {
+      this.id = param['id'];
       this.loadMovies();
+      console.log(this.id);
     });
   }
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: ActivatedRoute, private routers: Router)
-  {}
 
   loadMovies() {
-    this.http.get<Movie>(this.baseUrl + 'api/movies/' +this.params.id).subscribe(result => {
+    this.http.get<Movie>(this.baseUrl + 'api/movies/' +this.id).subscribe(result => {
       this.movie = result;
     }, error => console.error(error));
   }

@@ -10,20 +10,20 @@ import { Router } from '@angular/router';
 })
 export class MoviesUpdateComponent implements OnInit {
 
-  public movie: Movie;
-  public param;
+  public movie: Movie = <Movie>{};
+  public id: string;
 
   ngOnInit() {
-    this.routers.queryParams.subscribe(param => {
-      this.param = param;
+    this.routers.params.subscribe(param => {
+      this.id = param['id'];
       this.loadMovies();
-    });
+     });
   }
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private routers: ActivatedRoute, private router: Router)
   {}
 
   loadMovies() {
-    this.http.get<Movie>(this.baseUrl + 'api/movies/' +this.param.id).subscribe(result => {
+    this.http.get<Movie>(this.baseUrl + 'api/movies/' +this.id).subscribe(result => {
       this.movie = result;
     }, error => console.error(error));
   }
@@ -34,5 +34,8 @@ export class MoviesUpdateComponent implements OnInit {
   }
   public backToList() {
     this.router.navigateByUrl("/movies");
+  }
+  formatLabel(value: number) {
+    return value + '☆';
   }
 }

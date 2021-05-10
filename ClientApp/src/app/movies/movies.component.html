@@ -2,31 +2,49 @@
 
 <p>This component demonstrates fetching movies from the server.</p>
 
-<button class="nav-link text-dark" [routerLink]="['/movies-add']">Add movies</button>
+<button mat-raised-button color="primary" [routerLink]="['/movies-add']">Add movies</button>
+<br/>
+<br/>
 
 <p *ngIf="!movies"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="movies">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>GENRE</th>
-      <th>STAR</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let movie of movies">
-      <td>{{ movie.id }}</td>
-      <td>{{ movie.name }}</td>
-      <td>{{ movie.genre }}</td>
-      <td>{{ movie.star }}</td>
-      <td><button class="btn btn-primary" (click)="deleteMovie(movie)">delete</button></td>
-      <td><a href="/movies-details?id={{movie.id}}" class="btn btn-primary">details</a></td>
-      <td><a href="/movies-update?id={{movie.id}}" class="btn btn-primary">update</a></td>
-    </tr>
-  </tbody>
+<table mat-table [dataSource]="movies" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef style="width:25%">Name</th>
+    <td mat-cell *matCellDef="let movie"> {{movie.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="genre">
+    <th mat-header-cell *matHeaderCellDef style="width:25%">Genre</th>
+    <td mat-cell *matCellDef="let movie"> {{movie.genre}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="star">
+    <th mat-header-cell *matHeaderCellDef style="width:25%">Star</th>
+    <td mat-cell *matCellDef="let movie">☆ {{movie.star}} ☆</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef style="width:15%">Actions</th>
+    <td mat-cell *matCellDef="let movie">
+      <section>
+        <div>
+          <button mat-icon-button color="primary" matTooltip="Edit">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLink]="['/movies-update',movie.id]" style="cursor:pointer">edit</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" matTooltip="Info">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLink]="['/movies-details',movie.id]" style="cursor:pointer">info</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" matTooltip="Delete">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="deleteMovie(movie)" style="cursor:pointer">delete</mat-icon>
+          </button>
+
+        </div>
+      </section>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay "></tr>
+  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay ;"></tr>
 </table>

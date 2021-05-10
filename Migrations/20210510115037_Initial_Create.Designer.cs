@@ -10,8 +10,8 @@ using ProjectMovies.Data;
 namespace ProjectMovies.Migrations
 {
     [DbContext(typeof(ProjectMoviesContext))]
-    [Migration("20210505203110_new_server_name")]
-    partial class new_server_name
+    [Migration("20210510115037_Initial_Create")]
+    partial class Initial_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

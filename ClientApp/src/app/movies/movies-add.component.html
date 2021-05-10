@@ -1,11 +1,22 @@
-<h1 id="tableLabel">Add movies</h1>
+<mat-card>
+  <mat-card-content>
+    <h2 class="example-h2">Add movie</h2>
 
-Name: <br />
-<input [(ngModel)]="movie.name" /><br/>
-Genre: <br />
-<input [(ngModel)]="movie.genre" /><br/>
-Star: <br />
-<input [(ngModel)]="movie.star" /><br/> <br />
+    <mat-form-field>
+      <input matInput type="text" placeholder="Name" [(ngModel)]="movie.name">
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput type="text" placeholder="Genre" [(ngModel)]="movie.genre">
+    </mat-form-field>
+    <br />
+    ☆
+    <mat-slider min="0" max="10" step="1" placeholder="Star" thumbLabel [displayWith]="formatLabel" [(ngModel)]="movie.star"></mat-slider>
+    <br />
 
-<button class="btn btn-primary" (click)="saveMovie()">Save Movie</button> <br /> <br />
-<button class="btn btn-primary" (click)="backToList()">Back</button>
+    <button mat-raised-button color="primary" (click)="saveMovie()">Save Movie</button>
+    <br />
+    <button mat-raised-button color="primary" (click)="backToList()">Back</button>
+  </mat-card-content>
+ </mat-card>
+ 
