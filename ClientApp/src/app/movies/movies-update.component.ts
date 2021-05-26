@@ -3,6 +3,7 @@ import { Movie } from './movies.models';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { MoviesService } from './movies-services';
 
 @Component({
   selector: 'app-movies-update',
@@ -19,16 +20,16 @@ export class MoviesUpdateComponent implements OnInit {
       this.loadMovies();
      });
   }
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private routers: ActivatedRoute, private router: Router)
+  constructor(private movieService: MoviesService, private routers: ActivatedRoute, private router: Router)
   {}
 
   loadMovies() {
-    this.http.get<Movie>(this.baseUrl + 'api/movies/' +this.id).subscribe(result => {
+    this.movieService.loadMoviesById(this.id).subscribe(result => {
       this.movie = result;
     }, error => console.error(error));
   }
   public saveMovie() {
-    this.http.put(this.baseUrl + 'api/movies/'+ this.movie.id,this.movie).subscribe(result => {
+    this.movieService.updateMovie(this.movie.id, this.movie).subscribe(result => {
       this.router.navigateByUrl("/movies");
     }, error => console.error(error));
   }

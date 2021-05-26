@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Movie } from './movies.models';
+import { MoviesService } from './movies-services';
 
 @Component({
   selector: 'app-movies',
@@ -12,18 +13,18 @@ export class MoviesComponent {
 
   columnsToDisplay: string[] = ['name', 'genre', 'star', 'actions'];
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+  constructor(private movieService: MoviesService) {
     this.loadMovies();
   }
 
   public deleteMovie(movie: Movie) {
-    this.http.delete(this.baseUrl + 'api/movies/' + movie.id).subscribe(result => {
+    this.movieService.deleteMovie(movie).subscribe(result => {
       this.loadMovies();
     }, error => console.error(error))
   }
 
   loadMovies() {
-    this.http.get<Movie[]>(this.baseUrl + 'api/movies').subscribe(result => {
+    this.movieService.loadMovies().subscribe(result => {
       this.movies = result;
     }, error => console.error(error));
   }
